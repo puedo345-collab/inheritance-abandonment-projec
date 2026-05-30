@@ -67,10 +67,12 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
             <div 
               id="header-logo-container"
               onClick={() => onNavClick('hero')}
-              className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden bg-slate-900 border border-slate-800 text-amber-400 shadow-sm animate-fade-in shrink-0"
+              className={`relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden text-amber-400 shadow-sm animate-fade-in shrink-0 ${
+                logoImg ? 'bg-transparent' : 'bg-slate-900 border border-slate-800'
+              }`}
             >
               {logoImg ? (
-                <img src={logoImg} alt="여환동 법률 로고" className="w-full h-full object-cover" />
+                <img src={logoImg} alt="여환동 법률 로고" className="w-full h-full object-contain" />
               ) : (
                 <Scale className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
               )}
