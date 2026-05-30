@@ -82,6 +82,14 @@ export default function QualificationCheck({ onComplete, onCancel, mode = 'gener
     };
   }, []);
 
+  // Scroll smoothly to the top of the card on step change to prevent Galaxy mobile keyboard-dismiss scroll shift
+  React.useEffect(() => {
+    const el = document.getElementById('qualification-inner-container');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [currentStep]);
+
   const handleSingleSelect = (key: string, value: string) => {
     const updated = { ...answers, [key]: value };
     setAnswers(updated);
@@ -181,7 +189,7 @@ export default function QualificationCheck({ onComplete, onCancel, mode = 'gener
   };
 
   return (
-    <div className="max-w-xl mx-auto px-2 sm:px-4 py-4 sm:py-8 md:py-12" id="qualification-inner-container">
+    <div className="max-w-xl mx-auto px-2 sm:px-4 py-4 sm:py-8 md:py-12 scroll-mt-24 sm:scroll-mt-28" id="qualification-inner-container">
       <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-slate-100 overflow-hidden relative">
         
         {/* Top bar progress indicators */}
