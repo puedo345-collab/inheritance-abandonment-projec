@@ -111,12 +111,12 @@ export default function LawyerIntroduction({ onBack, onStartSurvey }: LawyerIntr
             <div className="bg-neutral-900 rounded-3xl p-6 sm:p-8 border border-neutral-800 shadow-xl flex flex-col justify-between h-full space-y-6">
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 {/* Embedded Profile Image within the same block! */}
-                <div className="w-[180px] sm:w-[200px] shrink-0 bg-neutral-950 border border-neutral-850 p-1 rounded-2xl overflow-hidden aspect-[200/230] shadow-sm self-center md:self-start">
+                <div className="w-[180px] sm:w-[200px] shrink-0 rounded-2xl overflow-hidden aspect-[200/230] shadow-sm self-center md:self-start">
                   <img
                     src={imgSrc}
                     alt="대표 법무사 여환동"
                     onError={handleImageError}
-                    className="w-full h-full object-cover object-top rounded-xl transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover object-top rounded-2xl transition-transform duration-500 hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
                 </div>
