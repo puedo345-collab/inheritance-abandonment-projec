@@ -269,15 +269,7 @@ export default function QualificationCheck({ onComplete, onCancel, mode = 'gener
                       />
                       <span className="text-xl font-extrabold text-slate-800">만 원</span>
                     </div>
-                    {answers.monthlyIncome && (
-                      <span className="text-xs text-blue-600 font-extrabold bg-blue-50/50 px-2.5 py-1 rounded-lg border border-blue-100">
-                        실제 입력 소득: {(() => {
-                          const val = parseInt(answers.monthlyIncome, 10);
-                          if (isNaN(val) || val <= 0) return '';
-                          return `${val.toLocaleString()}만 원`;
-                        })()}
-                      </span>
-                    )}
+                    {/* Removed redundant input badge */}
                   </div>
 
                   {/* Quick increment buttons */}
@@ -373,20 +365,7 @@ export default function QualificationCheck({ onComplete, onCancel, mode = 'gener
                       />
                       <span className="text-xl font-extrabold text-slate-800">만 원</span>
                     </div>
-                    {answers.debtAmount && (
-                      <span className="text-xs text-blue-600 font-extrabold bg-blue-50/50 px-2.5 py-1 rounded-lg border border-blue-100 font-sans">
-                        실제 입력 금액: {(() => {
-                          const val = parseInt(answers.debtAmount, 10);
-                          if (isNaN(val) || val <= 0) return '';
-                          if (val >= 10000) {
-                            const eok = Math.floor(val / 10000);
-                            const man = val % 10000;
-                            return `${eok}억 ${man > 0 ? man + '만' : ''} 원`;
-                          }
-                          return `${val.toLocaleString()}만 원`;
-                        })()}
-                      </span>
-                    )}
+                    {/* Removed redundant input badge */}
                   </div>
 
                   {/* Quick increment buttons */}
