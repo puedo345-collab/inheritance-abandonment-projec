@@ -72,6 +72,60 @@ export default function App() {
       .catch(err => console.error("Error loading config:", err));
   }, []);
 
+  // Handle browser back button (popstate) for overlay screens and modals
+  React.useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      if (privacyModalOpen) {
+        setPrivacyModalOpen(false);
+        setConsultationOpen(true);
+      } else if (consultationOpen) {
+        setConsultationOpen(false);
+      } else if (caseMatcherActive) {
+        setCaseMatcherActive(false);
+      } else if (surveyActive) {
+        setSurveyActive(false);
+      } else if (planSimulatorActive) {
+        setPlanSimulatorActive(false);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [consultationOpen, privacyModalOpen, caseMatcherActive, surveyActive, planSimulatorActive]);
+
+  // Push history state when opening overlays/modals to prevent site exit on back button
+  React.useEffect(() => {
+    if (consultationOpen && window.history.state?.type !== 'consultation') {
+      window.history.pushState({ type: 'consultation' }, '');
+    }
+  }, [consultationOpen]);
+
+  React.useEffect(() => {
+    if (privacyModalOpen && window.history.state?.type !== 'privacy') {
+      window.history.pushState({ type: 'privacy' }, '');
+    }
+  }, [privacyModalOpen]);
+
+  React.useEffect(() => {
+    if (caseMatcherActive && window.history.state?.type !== 'caseMatcher') {
+      window.history.pushState({ type: 'caseMatcher' }, '');
+    }
+  }, [caseMatcherActive]);
+
+  React.useEffect(() => {
+    if (surveyActive && window.history.state?.type !== 'survey') {
+      window.history.pushState({ type: 'survey' }, '');
+    }
+  }, [surveyActive]);
+
+  React.useEffect(() => {
+    if (planSimulatorActive && window.history.state?.type !== 'planBuilder') {
+      window.history.pushState({ type: 'planBuilder' }, '');
+    }
+  }, [planSimulatorActive]);
+
   // Reset reservation date & time to today & default when opening the card
   React.useEffect(() => {
     if (consultationOpen) {
@@ -209,6 +263,9 @@ export default function App() {
         !privacyModalOpen
       ) {
         setConsultationOpen(false);
+        if (window.history.state?.type === 'consultation') {
+          window.history.back();
+        }
       }
     };
     document.addEventListener('mousedown', handleOutsideClick);
@@ -455,6 +512,11 @@ export default function App() {
     setBrandPageActive(false);
     setAdminPageActive(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const currentType = window.history.state?.type;
+    if (currentType === 'survey' || currentType === 'caseMatcher' || currentType === 'planBuilder') {
+      window.history.back();
+    }
   };
 
   return (
@@ -666,7 +728,12 @@ export default function App() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => setConsultationOpen(false)}
+                  onClick={() => {
+                    setConsultationOpen(false);
+                    if (window.history.state?.type === 'consultation') {
+                      window.history.back();
+                    }
+                  }}
                   className="text-zinc-400 hover:text-white transition-colors cursor-pointer p-1"
                 >
                   <X className="w-4 h-4" />
@@ -690,6 +757,9 @@ export default function App() {
                     onClick={() => {
                       setSubmitSuccess(false);
                       setConsultationOpen(false);
+                      if (window.history.state?.type === 'consultation') {
+                        window.history.back();
+                      }
                     }}
                     className="w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-extrabold rounded-xl text-xs transition-colors cursor-pointer text-center"
                   >
@@ -951,6 +1021,9 @@ export default function App() {
               onClick={() => {
                 setPrivacyModalOpen(false);
                 setConsultationOpen(true);
+                if (window.history.state?.type === 'privacy') {
+                  window.history.back();
+                }
               }}
               className="absolute inset-0 bg-slate-900/60 backdrop-blur-xs"
             />
@@ -969,6 +1042,9 @@ export default function App() {
                   onClick={() => {
                     setPrivacyModalOpen(false);
                     setConsultationOpen(true);
+                    if (window.history.state?.type === 'privacy') {
+                      window.history.back();
+                    }
                   }}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer p-1"
                 >
@@ -1028,6 +1104,9 @@ export default function App() {
                     setReserveAgree(true);
                     setPrivacyModalOpen(false);
                     setConsultationOpen(true);
+                    if (window.history.state?.type === 'privacy') {
+                      window.history.back();
+                    }
                   }}
                   className="w-36 py-3 bg-[#3F4E65] hover:bg-slate-800 text-white font-black text-xs sm:text-sm rounded-md shadow-md transition-all text-center cursor-pointer tracking-wider"
                 >
