@@ -104,7 +104,7 @@ export default function EligibilityNotes() {
                   </div>
                   <div className="space-y-2 text-left">
                     <h4 className="font-extrabold text-[#BC8412] text-[19px] sm:text-[21px]">채무 합계액 한도</h4>
-                    <p className="text-[18px] text-slate-500 font-bold leading-relaxed font-sans w-full" style={{ textAlign: 'justify', textJustify: 'inter-character', wordBreak: 'break-all' }}>
+                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans w-full" style={{ textAlign: 'justify', textJustify: 'inter-character', wordBreak: 'break-all' }}>
                       무담보 채무(신용 대출, 신용카드 연체대금 등) 10억 이하, 담보 채무(아파트·주택 담보 채무, 자동차 담보 채무 등) 15억 이하 이면서, 너무 소액의 채무는 인가 가능성이 낮으므로 약 1천만 원 이상의 채무가 있으면 됩니다.
                     </p>
                   </div>
@@ -116,7 +116,7 @@ export default function EligibilityNotes() {
                   </div>
                   <div className="space-y-2 text-left">
                     <h4 className="font-extrabold text-slate-800 text-[19px] sm:text-[21px]">보유한 재산보다 채무가 많아야</h4>
-                    <p className="text-[18px] text-slate-500 font-bold leading-relaxed font-sans w-full" style={{ textAlign: 'justify', textJustify: 'inter-character', wordBreak: 'break-all' }}>
+                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans w-full" style={{ textAlign: 'justify', textJustify: 'inter-character', wordBreak: 'break-all' }}>
                       채무자가 보유하고 있는 부동산이나 자동차 등의 시세 가액이, 채무자가 부담하고 있는 채무(담보채무 제외) 보다 적을 경우에 개인회생 대상이 됩니다. 다만, 재산의 가액 산정 시 시세에서 담보 채무를 뺀 나머지를 재산 가액으로 산정해야 합니다.
                     </p>
                   </div>
