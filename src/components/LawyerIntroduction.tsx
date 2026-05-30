@@ -17,44 +17,17 @@ interface LawyerIntroductionProps {
 }
 
 export default function LawyerIntroduction({ onBack, onStartSurvey }: LawyerIntroductionProps) {
-  const [imgSrc, setImgSrc] = React.useState<string>('/src/lawyer_yeo.jpg');
+  const [imgSrc, setImgSrc] = React.useState<string>('/lawyer_yeo.jpg');
   const [fallbackIndex, setFallbackIndex] = React.useState(0);
 
   const fallbacks = [
-    '/src/lawyer_yeo.jpg',
-    '/src/lawyer_yeo.png',
-    '/src/lawyer_yeo.jpeg',
     '/lawyer_yeo.jpg',
     '/lawyer_yeo.png',
+    '/lawyer_yeo.jpeg',
     'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=400&h=533' // Elegant Asian professional fallback
   ];
 
-  React.useEffect(() => {
-    const loadProfile = () => {
-      fetch('/api/profile-image')
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && data.image) {
-            setImgSrc(data.image);
-          } else {
-            setImgSrc('/src/lawyer_yeo.jpg');
-          }
-        })
-        .catch((err) => console.error("Error loading profile image:", err));
-    };
-
-    loadProfile();
-
-    window.addEventListener("profile-updated", loadProfile);
-    return () => {
-      window.removeEventListener("profile-updated", loadProfile);
-    };
-  }, []);
-
   const handleImageError = () => {
-    if (imgSrc.startsWith('data:')) {
-      return;
-    }
     if (fallbackIndex < fallbacks.length - 1) {
       const nextIndex = fallbackIndex + 1;
       setFallbackIndex(nextIndex);
