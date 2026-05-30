@@ -9,10 +9,12 @@ interface HeaderProps {
 export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [logoImg, setLogoImg] = useState<string | null>(null);
+  const [logoLoading, setLogoLoading] = useState(true);
   const headerRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     const loadLogo = () => {
+      setLogoLoading(true);
       fetch('/api/logo-image')
         .then((res) => res.json())
         .then((data) => {
@@ -22,7 +24,10 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
             setLogoImg(null);
           }
         })
-        .catch((err) => console.error("Error loading logo:", err));
+        .catch((err) => console.error("Error loading logo:", err))
+        .finally(() => {
+          setLogoLoading(false);
+        });
     };
 
     loadLogo();
@@ -67,14 +72,16 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
             <div 
               id="header-logo-container"
               onClick={() => onNavClick('hero')}
-              className={`relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden text-amber-400 shadow-sm animate-fade-in shrink-0 ${
-                logoImg ? 'bg-transparent' : 'bg-slate-900 border border-slate-800'
+              className={`relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden text-amber-500 shadow-xs shrink-0 ${
+                logoLoading ? 'bg-transparent' : (logoImg ? 'bg-transparent' : 'bg-slate-900 border border-slate-800')
               }`}
             >
-              {logoImg ? (
-                <img src={logoImg} alt="여환동 법률 로고" className="w-full h-full object-contain" />
-              ) : (
-                <Scale className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
+              {!logoLoading && (
+                logoImg ? (
+                  <img src={logoImg} alt="여환동 법률 로고" className="w-full h-full object-contain" />
+                ) : (
+                  <Scale className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
+                )
               )}
             </div>
  
