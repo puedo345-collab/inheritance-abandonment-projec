@@ -1,0 +1,8 @@
+{
+  "name": "법무사 여환동 사무소 ",
+  "description": "랜딩 페이지 최종본",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

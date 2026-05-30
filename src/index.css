@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Base body background with smooth premium transition */
+html, body {
+  background-color: #FAF9F5;
+  color: #1E293B;
+  transition: background-color 0.5s ease;
+}
+
+/* Custom scrollbar and layout enhancements */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6.5px;
+    height: 6.5px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F4;
+  border-left: 1px solid #EAE5D9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4B9A3;
+  border: 3px solid #FAF8F4;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A89B82;
+}
+
+/* Luxurious Golden Grid Mesh Web Overlay for Background */
+.gold-mesh-grid {
+  background-image: 
+    linear-gradient(to right, rgba(212, 175, 55, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 90% 85% at 50% 35%, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 35%, black 60%, transparent 100%);
+}
+
+/* Soft Premium Ambient Auroras (Slow subtle floating for true legal elegance) */
+@keyframes slow-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translate(5%, 7%) scale(1.15);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translate(-4%, -5%) scale(0.9);
+    opacity: 0.5;
+  }
+}
+
+.animate-slow-drift-1 {
+  animation: slow-drift 18s infinite ease-in-out;
+}
+
+.animate-slow-drift-2 {
+  animation: slow-drift 24s infinite ease-in-out alternate;
+}
+
+/* Custom Gentle Glow animation */
+@keyframes custom-gentle-glow {
+  0%, 100% {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.03), 0 0 12px 1px rgba(196, 172, 114, 0.15);
+    border-color: rgba(212, 175, 55, 0.25);
+  }
+  50% {
+    box-shadow: 0 10px 25px -3px rgba(196, 172, 114, 0.35), 0 0 20px 4px rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.7);
+  }
+}
+
+.animate-gentle-glow {
+  animation: custom-gentle-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes luxury-pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.25), 0 0 8px 1px rgba(16, 185, 129, 0.15), 0 0 0 0px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.3), 0 0 18px 4px rgba(16, 185, 129, 0.35), 0 0 0 5px rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes luxury-pulse-glow-amber {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.25), 0 0 10px 2px rgba(245, 158, 11, 0.2), 0 0 0 0px rgba(245, 158, 11, 0.25);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.3), 0 0 22px 6px rgba(245, 158, 11, 0.4), 0 0 0 6px rgba(245, 158, 11, 0);
+  }
+}
+
+.animate-luxury-pulse {
+  animation: luxury-pulse-glow 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.animate-luxury-pulse-amber {
+  animation: luxury-pulse-glow-amber 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Sophisticated premium text gradient */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #1E293B 30%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
