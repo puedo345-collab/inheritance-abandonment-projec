@@ -291,7 +291,7 @@ export default function EligibilityNotes() {
                   </div>
                   <div className="space-y-2 text-left">
                     <h4 className="font-extrabold text-slate-800 text-[19px] sm:text-[21px]">소득불능 및 최저생계비 미달</h4>
-                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans text-justify w-full">
+                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans w-full" style={{ textAlign: 'justify', textJustify: 'inter-character', wordBreak: 'break-all' }}>
                       소득이 전혀 없거나 소득이 있더라도 보건복지부 기준 최저생계비 미만이어야 합니다. 특히 고령(통상 만 60세 이상), 큰 질병, 장애 등 객관적으로 경제 활동이 불가능하거나 곤란하다는 점을 증명하는 것이 최우선 과제입니다.
                     </p>
                   </div>
@@ -303,7 +303,7 @@ export default function EligibilityNotes() {
                   </div>
                   <div className="space-y-2 text-left">
                     <h4 className="font-extrabold text-slate-800 text-[19px] sm:text-[21px]">재산보다 압도적으로 많은 채무</h4>
-                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans text-justify w-full">
+                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans w-full" style={{ textAlign: 'justify', textJustify: 'inter-character', wordBreak: 'break-all' }}>
                       현재 본인 소유의 재산(집, 땅, 예적금, 보험 해약환급금, 임차 보증금 등)의 가치가 채무 총액보다 현격히 적어야 합니다. 채무보다 재산이 조금이라도 많다면 파산 면책 대상에서 원천적으로 제외됩니다.
                     </p>
                   </div>
@@ -315,7 +315,7 @@ export default function EligibilityNotes() {
                   </div>
                   <div className="space-y-2 text-left">
                     <h4 className="font-extrabold text-slate-800 text-[19px] sm:text-[21px]">면책 불허가 사유의 배제</h4>
-                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans text-justify w-full">
+                    <p className="text-[16px] sm:text-[18px] text-slate-500 font-bold leading-relaxed font-sans w-full" style={{ textAlign: 'justify', textJustify: 'inter-character', wordBreak: 'break-all' }}>
                       고의로 고액의 재산을 타인 명의로 넘기거나 은닉하고 거짓 진술하는 행위가 없어야 합니다. 또한 단순 과도한 도박, 사치 등은 불합리한 행위나 소비로 판단되어 기각 사유가 될 수 있으므로 법무사 조력이 절대적으로 필요합니다.
                     </p>
                   </div>
