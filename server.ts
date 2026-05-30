@@ -8,8 +8,8 @@ import dotenv from "dotenv";
 // Load environment variables
 dotenv.config();
 
-// Standard port is strictly 3000
-const PORT = 3000;
+// Standard port is strictly 3000 or dynamically set by host (like Render)
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const DB_FILE_PATH = path.join(process.cwd(), "submissions.json");
 const ADMIN_CONFIG_PATH = path.join(process.cwd(), "admin_config.json");
 
