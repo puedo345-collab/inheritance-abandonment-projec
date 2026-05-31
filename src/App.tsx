@@ -56,7 +56,7 @@ export default function App() {
   const [reserveTime, setReserveTime] = useState(getDefaultTime());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [reserveAgree, setReserveAgree] = useState(false);
+  const [reserveAgree, setReserveAgree] = useState(true);
   const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
   const [reserveError, setReserveError] = useState('');
   const [kakaoChannelUrl, setKakaoChannelUrl] = useState('http://pf.kakao.com/_xhTqgG/chat');
@@ -159,7 +159,7 @@ export default function App() {
       setIsAsap(true);
       setReserveDate(getTodayDateString());
       setReserveTime(getDefaultTime());
-      setReserveAgree(false);
+      setReserveAgree(true);
       setReserveError('');
     }
   }, [consultationOpen]);
