@@ -163,7 +163,6 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
                 }}
                 className="w-full py-3.5 text-center bg-amber-600 hover:bg-amber-700 text-white font-extrabold rounded-xl shadow-md tracking-wide cursor-pointer flex justify-center items-center gap-2"
               >
-                <Scale className="w-5 h-5 text-amber-100" />
                 신청자격 무료 알아보기 (약 1분)
               </button>
             </div>
