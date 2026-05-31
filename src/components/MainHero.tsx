@@ -54,16 +54,16 @@ export default function MainHero({ onStartSurvey, onWorryChipClick }: MainHeroPr
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="space-y-5 sm:space-y-6"
+          className="flex flex-col items-center"
         >
-          <h2 className="text-amber-800 font-extrabold text-[16px] sm:text-[18px] md:text-[22px] tracking-wider uppercase">
+          <h2 className="text-amber-800 font-extrabold text-[16px] sm:text-[18px] md:text-[22px] tracking-wider uppercase mb-4 sm:mb-5">
             울산에 사시는데 다른 지역에 맡기시려고요?
           </h2>
-          <h1 className="text-[38px] sm:text-[52px] md:text-[62px] lg:text-[74px] font-black tracking-wide text-slate-900 leading-[1.12] whitespace-pre-line gold-text-gradient">
+          <h1 className="text-[38px] sm:text-[52px] md:text-[62px] lg:text-[74px] font-black tracking-wide text-slate-900 leading-[1.12] whitespace-pre-line gold-text-gradient mb-2 sm:mb-2.5">
             개인회생·개인파산
           </h1>
           <p className="text-[16px] sm:text-[20px] text-slate-600 max-w-2xl mx-auto font-bold leading-relaxed px-4">
-            울산지방법원 사건에 특화된 전문 법무사입니다.
+            울산지방법원 사건에 특화된 법무사입니다.
           </p>
         </motion.div>
 
