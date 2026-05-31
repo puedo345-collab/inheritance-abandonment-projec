@@ -139,8 +139,8 @@ export default function MainHero({ onStartSurvey, onWorryChipClick }: MainHeroPr
                 {card.icon}
               </div>
               <div className="space-y-1 flex-1 min-w-0">
-                <h4 className="font-extrabold text-slate-800 text-[13.5px] min-[360px]:text-[15.5px] min-[390px]:text-[17.15px] sm:text-[19px] flex flex-col items-start gap-1">
-                  <span className={`${idx === 0 ? "text-blue-800 font-black tracking-tight" : ""}`}>
+                <h4 className="font-extrabold text-slate-800 text-[13px] min-[360px]:text-[15.5px] min-[390px]:text-[17.15px] sm:text-[19px] flex flex-col items-start gap-1">
+                  <span className={`whitespace-nowrap ${idx === 0 ? "text-blue-800 font-black tracking-tight" : ""}`}>
                     {card.title}
                   </span>
                   {idx === 0 && (
