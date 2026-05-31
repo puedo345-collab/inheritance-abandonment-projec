@@ -22,6 +22,7 @@ export default function App() {
   const [brandPageActive, setBrandPageActive] = useState(false);
   const [adminPageActive, setAdminPageActive] = useState(false);
   const [isOverFooter, setIsOverFooter] = useState(false);
+  const [currentSection, setCurrentSection] = useState<string | null>(null);
 
   const getTodayDateString = () => {
     const today = new Date();
@@ -88,6 +89,12 @@ export default function App() {
         setPlanSimulatorActive(false);
       } else if (userResponses) {
         setUserResponses(null);
+      } else if (brandPageActive) {
+        setBrandPageActive(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (currentSection) {
+        setCurrentSection(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
 
@@ -95,9 +102,9 @@ export default function App() {
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [consultationOpen, privacyModalOpen, caseMatcherActive, surveyActive, planSimulatorActive, userResponses]);
+  }, [consultationOpen, privacyModalOpen, caseMatcherActive, surveyActive, planSimulatorActive, userResponses, brandPageActive, currentSection]);
 
-  // Push history state when opening overlays/modals to prevent site exit on back button
+  // Push history state when opening overlays/modals/pages to prevent site exit on back button
   React.useEffect(() => {
     if (consultationOpen && window.history.state?.type !== 'consultation') {
       window.history.pushState({ type: 'consultation' }, '');
@@ -133,6 +140,18 @@ export default function App() {
       window.history.pushState({ type: 'results' }, '');
     }
   }, [userResponses]);
+
+  React.useEffect(() => {
+    if (brandPageActive && window.history.state?.type !== 'brand') {
+      window.history.pushState({ type: 'brand' }, '');
+    }
+  }, [brandPageActive]);
+
+  React.useEffect(() => {
+    if (currentSection && window.history.state?.type !== 'section') {
+      window.history.pushState({ type: 'section', section: currentSection }, '');
+    }
+  }, [currentSection]);
 
   // Reset reservation date & time to today & default when opening the card
   React.useEffect(() => {
@@ -367,6 +386,10 @@ export default function App() {
       setPlanSimulatorActive(false);
       setUserResponses(null);
       setBrandPageActive(false);
+      setCurrentSection(null);
+      if (window.history.state?.type === 'brand' || window.history.state?.type === 'section') {
+        window.history.back();
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (sectionId === 'brand' || sectionId === 'service') {
       setBrandPageActive(true);
@@ -374,6 +397,7 @@ export default function App() {
       setCaseMatcherActive(false);
       setPlanSimulatorActive(false);
       setUserResponses(null);
+      setCurrentSection(null);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (sectionId === 'stories') {
       setBrandPageActive(false);
@@ -381,6 +405,7 @@ export default function App() {
       setCaseMatcherActive(false);
       setPlanSimulatorActive(false);
       setUserResponses(null);
+      setCurrentSection('stories');
       setTimeout(() => {
         window.dispatchEvent(new CustomEvent('set-eligibility-tab', { detail: { tab: 'rehabilitation' } }));
       }, 50);
@@ -394,6 +419,7 @@ export default function App() {
       setCaseMatcherActive(false);
       setPlanSimulatorActive(false);
       setUserResponses(null);
+      setCurrentSection('bankruptcy');
       setTimeout(() => {
         window.dispatchEvent(new CustomEvent('set-eligibility-tab', { detail: { tab: 'bankruptcy' } }));
       }, 50);
@@ -407,6 +433,7 @@ export default function App() {
       setCaseMatcherActive(false);
       setPlanSimulatorActive(false);
       setUserResponses(null);
+      setCurrentSection('our-spirit');
       scrollWithLayoutSafety(
         () => document.getElementById('our-spirit') || document.getElementById('brand'),
         eligibilityRef
@@ -417,6 +444,7 @@ export default function App() {
       setCaseMatcherActive(false);
       setPlanSimulatorActive(false);
       setUserResponses(null);
+      setCurrentSection('faq');
       scrollWithLayoutSafety(
         () => document.getElementById('faq') || document.getElementById('brand'),
         eligibilityRef
@@ -428,6 +456,7 @@ export default function App() {
       setCaseMatcherActive(false);
       setPlanSimulatorActive(false);
       setUserResponses(null);
+      setCurrentSection(null);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -574,6 +603,9 @@ export default function App() {
                 <LawyerIntroduction
                   onBack={() => {
                     setBrandPageActive(false);
+                    if (window.history.state?.type === 'brand') {
+                      window.history.back();
+                    }
                     const forceScrollTop = () => {
                       window.scrollTo(0, 0);
                       document.documentElement.scrollTop = 0;
