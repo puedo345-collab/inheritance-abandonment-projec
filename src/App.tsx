@@ -86,6 +86,8 @@ export default function App() {
         setSurveyActive(false);
       } else if (planSimulatorActive) {
         setPlanSimulatorActive(false);
+      } else if (userResponses) {
+        setUserResponses(null);
       }
     };
 
@@ -93,7 +95,7 @@ export default function App() {
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [consultationOpen, privacyModalOpen, caseMatcherActive, surveyActive, planSimulatorActive]);
+  }, [consultationOpen, privacyModalOpen, caseMatcherActive, surveyActive, planSimulatorActive, userResponses]);
 
   // Push history state when opening overlays/modals to prevent site exit on back button
   React.useEffect(() => {
@@ -125,6 +127,12 @@ export default function App() {
       window.history.pushState({ type: 'planBuilder' }, '');
     }
   }, [planSimulatorActive]);
+
+  React.useEffect(() => {
+    if (userResponses && window.history.state?.type !== 'results') {
+      window.history.pushState({ type: 'results' }, '');
+    }
+  }, [userResponses]);
 
   // Reset reservation date & time to today & default when opening the card
   React.useEffect(() => {
@@ -514,7 +522,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const currentType = window.history.state?.type;
-    if (currentType === 'survey' || currentType === 'caseMatcher' || currentType === 'planBuilder') {
+    if (currentType === 'survey' || currentType === 'caseMatcher' || currentType === 'planBuilder' || currentType === 'results') {
       window.history.back();
     }
   };
