@@ -42,6 +42,9 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
       if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+        if (window.history.state?.type === 'mobileMenu') {
+          window.history.back();
+        }
       }
     }
 
@@ -54,6 +57,26 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
     };
+  }, [isOpen]);
+
+  // Intercept browser back button to close mobile menu gracefully instead of site exit
+  React.useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (isOpen && window.history.state?.type !== 'mobileMenu') {
+      window.history.pushState({ type: 'mobileMenu' }, '');
+    }
   }, [isOpen]);
 
   const navItems = [
@@ -128,7 +151,16 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
               1분 자격진단
             </button>
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => {
+                if (isOpen) {
+                  setIsOpen(false);
+                  if (window.history.state?.type === 'mobileMenu') {
+                    window.history.back();
+                  }
+                } else {
+                  setIsOpen(true);
+                }
+              }}
               className="p-1.5 sm:p-2.5 rounded-lg text-slate-700 hover:bg-slate-100 active:bg-slate-200 transition-all cursor-pointer flex items-center justify-center min-w-8 min-h-8 sm:min-w-10 sm:min-h-10"
               aria-label="Toggle Menu"
               id="mobile-header-hamburger-btn"
@@ -149,6 +181,9 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
                 onClick={() => {
                   onNavClick(item.id);
                   setIsOpen(false);
+                  if (window.history.state?.type === 'mobileMenu') {
+                    window.history.back();
+                  }
                 }}
                 className="block w-full text-left px-4 py-3 rounded-xl text-base font-bold text-slate-700 hover:bg-amber-500/10 hover:text-amber-700 transition-all cursor-pointer"
               >
@@ -160,6 +195,9 @@ export default function Header({ onNavClick, onStartSurvey }: HeaderProps) {
                 onClick={() => {
                   onStartSurvey();
                   setIsOpen(false);
+                  if (window.history.state?.type === 'mobileMenu') {
+                    window.history.back();
+                  }
                 }}
                 className="w-full py-3.5 text-center bg-amber-600 hover:bg-amber-700 text-white font-extrabold rounded-xl shadow-md tracking-wide cursor-pointer flex justify-center items-center gap-2"
               >
